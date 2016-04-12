@@ -28,7 +28,7 @@
 (defn ugly-filter [offset]
   (str
    "<feOffset result=\"offOut\" in=\"SourceAlpha\" dx=\"" offset
-   "\" dy=\"" offset "\" /> <feGaussianBlur result=\"blurOut\" in=\"offOut\" stdDeviation=\"" 6 "\" /> <feBlend in=\"SourceGraphic\" in2=\"blurOut\" mode=\"normal\" />"))
+   "\" dy=\"" offset "\" /> <feGaussianBlur result=\"blurOut\" in=\"offOut\" stdDeviation=\"" 5 "\" /> <feBlend in=\"SourceGraphic\" in2=\"blurOut\" mode=\"normal\" />"))
 
 (defn drop-shadow [offset]
   [:filter {:id "shadow" :x "0" :y "0" :width "200%" :height "200%"
@@ -89,7 +89,7 @@
        [:svg {:width width
               :height width}
         [:defs
-         [drop-shadow (int (/ stone-width 8))]]
+         [drop-shadow (int (/ stone-width 11))]]
         [lines s size]
         [handicap-points size s stone-width]
         [stones p (:stones @state) w]]])))
