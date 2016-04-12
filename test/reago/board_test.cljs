@@ -17,14 +17,14 @@
 
 
 (defcard-rg example-board
-  [board/make 19 400 (reagent/atom {:stones {[3 3] :white
-                                             [2 2] :white
-                                             [3 2] :white
-                                             [7 2] :white
-                                             [2 3] :black
-                                             [1 2] :black
-                                             [1 4] :black
-                                             [2 5] :black}})])
+  [board/make 9 400 (reagent/atom {:stones {[3 3] :white
+                                            [2 2] :white
+                                            [3 2] :white
+                                            [7 2] :white
+                                            [2 3] :black
+                                            [1 2] :black
+                                            [1 4] :black
+                                            [2 5] :black}})])
 
 
 (defcard-rg filter-test

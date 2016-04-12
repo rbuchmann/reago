@@ -38,6 +38,41 @@
   (let [dx (/ (- stop start) (count values))]
     (zipmap values (map int (range (/ dx 2) stop dx)))))
 
+(defn cartesian-product [r]
+  (for [x r
+        y r]
+    [x y]))
+
+(defn handicap-point-locations [size]
+  (case size
+    19 (cartesian-product (range 3 19 6))
+    9 (conj (cartesian-product (range 2 9 4))
+            [4 4])))
+
+(defn stones [pos-fn stones width]
+  [:g
+   (doall
+    (for [[[x y] color] stones]
+      ^{:key (str x "-" y)}
+      [stone (pos-fn x) (pos-fn y) width color]))])
+
+(defn lines [scale size]
+  [:g
+   (for [x (range size)]
+     ^{:key x}
+     [line (scale x) (scale 0) (scale x) (scale (dec size))])
+   (for [y (range size)]
+     ^{:key y}
+     [line (scale 0) (scale y) (scale (dec size)) (scale y)])])
+
+(defn handicap-points [size scale stone-width]
+  [:g
+   (for [[x y] (handicap-point-locations size)]
+     [:circle {:cx (scale x)
+               :cy (scale y)
+               :r (/ stone-width 10)
+               :fill :black}])])
+
 (defn make [size width state]
   (let [s (range-scale (range size) [0 width])
         stone-width (/ width (inc size))
@@ -51,14 +86,6 @@
               :height width}
         [:defs
          [drop-shadow (int (/ stone-width 8))]]
-        [:g
-         (for [x (range size)]
-           ^{:key x}
-           [line (s x) (s 0) (s x) (s (dec size))])
-         (for [y (range size)]
-           ^{:key y}
-           [line (s 0) (s y) (s (dec size)) (s y)])]
-        (doall
-         (for [[[x y] color] (:stones @state)]
-           ^{:key (str x "-" y)}
-           [stone (p x) (p y) w color]))]])))
+        [lines s size]
+        [handicap-points size s stone-width]
+        [stones p (:stones @state) w]]])))
