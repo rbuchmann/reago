@@ -1,6 +1,6 @@
 # reago
 
-A reactive Go board made with reagent and :heart:. The stone and wood textures were photographed by the amazing @atarnowsky ( [https://github.com/atarnowsky](link) ) and are licensed under the [http://creativecommons.org/licenses/by-sa/4.0/](creative commons attribution/share alike) license.
+A reactive Go board made with reagent and :heart:. The stone and wood textures were photographed by the amazing @atarnowsky ( [link](https://github.com/atarnowsky) ) and are licensed under the [creative commons attribution/share alike](http://creativecommons.org/licenses/by-sa/4.0/) license.
 
 ## Developer Setup
 
