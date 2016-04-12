@@ -80,6 +80,9 @@
         w (str stone-width "px")]
     (fn []
       [:div {:style {:background-image "url(/img/wood2.jpg)"
+                     :background-size :cover
+                     :box-shadow "10px 10px 20px rgba(0, 0, 0, 0.25), inset -3px -3px 6px rgba(0,0,0,0.5), inset 3px 3px 6px rgba(255,255,255,1)"
+                     :border-radius "3px"
                      :width width
                      :height width}}
        [:svg {:width width
