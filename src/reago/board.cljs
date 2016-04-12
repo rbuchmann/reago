@@ -68,6 +68,7 @@
 (defn handicap-points [size scale stone-width]
   [:g
    (for [[x y] (handicap-point-locations size)]
+     ^{:key (str x "-" y)}
      [:circle {:cx (scale x)
                :cy (scale y)
                :r (/ stone-width 10)
