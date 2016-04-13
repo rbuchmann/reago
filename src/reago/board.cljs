@@ -52,7 +52,7 @@
 (defn stones [pos-fn stones width]
   [:g
    (doall
-    (for [[[x y] color] stones]
+    (for [[[x y] color] (sort stones)]
       ^{:key (str x "-" y)}
       [stone (pos-fn x) (pos-fn y) width color]))])
 
