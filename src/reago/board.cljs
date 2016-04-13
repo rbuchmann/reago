@@ -31,7 +31,7 @@
    "\" dy=\"" offset "\" /> <feGaussianBlur result=\"blurOut\" in=\"offOut\" stdDeviation=\"" 5 "\" /> <feBlend in=\"SourceGraphic\" in2=\"blurOut\" mode=\"normal\" />"))
 
 (defn drop-shadow [offset]
-  [:filter {:id "shadow" :x "0" :y "0" :width "200%" :height "200%"
+  [:filter {:id "shadow" :x "-50%" :y "-50%" :width "400%" :height "400%"
             :dangerouslySetInnerHTML {:__html (ugly-filter offset)}}])
 
 (defn range-scale [values [start stop]]
@@ -82,7 +82,7 @@
     (fn []
       [:div {:style {:background-image "url(/img/wood2.jpg)"
                      :background-size :cover
-                     :box-shadow "10px 10px 20px rgba(0, 0, 0, 0.25), inset -3px -3px 6px rgba(0,0,0,0.5), inset 3px 3px 6px rgba(255,255,255,1)"
+                     :box-shadow "15px 15px 30px rgba(0, 0, 0, 0.40), inset -3px -3px 6px rgba(0,0,0,0.5), inset 3px 3px 6px rgba(255,255,255,1)"
                      :border-radius "3px"
                      :width width
                      :height width}}
