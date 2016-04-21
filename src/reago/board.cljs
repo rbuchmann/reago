@@ -74,7 +74,20 @@
                :r (/ stone-width 10)
                :fill :black}])])
 
-(defn make [size width state]
+(defn screen-to-point [evt size width]
+  (let [stone-width (/ width size)
+        t (fn [x] (.floor js/Math (/ x stone-width)))
+        svg (.getElementById js/document "board")
+        p (.createSVGPoint svg)]
+    (set! (.-x p) (.-clientX evt))
+    (set! (.-y p) (.-clientY evt))
+    (let [transformed (->> svg
+                           .getScreenCTM
+                           .inverse
+                           (.matrixTransform p))]
+      [(t (.-x transformed)) (t (.-y transformed))])))
+
+(defn make [size width state handler]
   (let [s (range-scale (range size) [0 width])
         stone-width (/ width (inc size))
         p #(- (s %) (/ stone-width 2))
@@ -86,8 +99,10 @@
                      :border-radius "3px"
                      :width width
                      :height width}}
-       [:svg {:width width
-              :height width}
+       [:svg {:id "board"
+              :width width
+              :height width
+              :on-click #(handler (screen-to-point % size width))}
         [:defs
          [drop-shadow (int (/ stone-width 20))]]
         [lines s size]

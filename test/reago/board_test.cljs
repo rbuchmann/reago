@@ -13,7 +13,8 @@
                                              [2 3] :black
                                              [1 2] :black
                                              [1 4] :black
-                                             [2 5] :black}})])
+                                             [2 5] :black}})
+   println])
 
 
 (defcard-rg example-board
@@ -24,7 +25,8 @@
                                             [2 3] :black
                                             [1 2] :black
                                             [1 4] :black
-                                            [2 5] :black}})])
+                                            [2 5] :black}})
+   println])
 
 
 (defcard-rg filter-test
